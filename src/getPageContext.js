@@ -1,25 +1,27 @@
 import { SheetsRegistry } from 'jss';
 import { createGenerateClassName, createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
+import { isServerSideRendering } from './util';
 
 // A theme with custom primary and secondary color.
 // It's optional.
-let theme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFFFFF',
     },
     secondary: blue,
-    type: getCurrentTheme()
   },
   typography: {
     useNextVariants: true,
   },
 });
 
-function getCurrentTheme(){
-  var someVarName = localStorage.getItem("themeKey");
-  if(someVarName) return someVarName;
+export function getCurrentTheme() {
+  if (!isServerSideRendering()) {
+    var someVarName = localStorage.getItem('themeKey');
+    if (someVarName) return someVarName;
+  }
   return 'light';
 }
 
