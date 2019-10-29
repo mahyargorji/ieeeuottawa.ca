@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
-import { event } from 'react-ga';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Typography } from "@material-ui/core";
+import { event } from "react-ga";
 
-import Link from './link';
+import Link from "./link";
 
 class ExternalRedirect extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class ExternalRedirect extends Component {
 
     this.state = {
       seconds: 5,
-      intervalID: null,
+      intervalID: null
     };
   }
 
@@ -44,14 +44,22 @@ class ExternalRedirect extends Component {
           You will be redirected to {description} in {seconds} seconds.
         </Typography>
         <Typography variant="h4" gutterBottom>
-          <Link to={url} href={url} eventLabel={url} forceExternal={forceExternal} style={{ color: '#3498db' }} onClick={() => event({
-            category: 'Waiting',
-            action: 'Clicked link early',
-            label: description,
-          })}>
+          <Link
+            to={url}
+            href={url}
+            eventLabel={url}
+            forceExternal={forceExternal}
+            style={{ color: "#3498db" }}
+            onClick={() =>
+              event({
+                category: "Waiting",
+                action: "Clicked link early",
+                label: description
+              })
+            }
+          >
             Click here
-          </Link>
-          {' '}
+          </Link>{" "}
           to be redirected there now.
         </Typography>
       </div>
@@ -62,12 +70,12 @@ class ExternalRedirect extends Component {
 ExternalRedirect.propTypes = {
   url: PropTypes.string.isRequired,
   urlDescription: PropTypes.string,
-  forceExternal: PropTypes.bool,
+  forceExternal: PropTypes.bool
 };
 
 ExternalRedirect.defaultProps = {
   urlDescription: null,
-  forceExternal: false,
+  forceExternal: false
 };
 
 export default ExternalRedirect;
